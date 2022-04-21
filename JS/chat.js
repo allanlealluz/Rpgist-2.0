@@ -8,14 +8,20 @@ addEventListener('submit',function(e){
     fetch('/rpgnip/index/receive/'+value)
 })
 function search(){
-    setTimeout('search()',1000)
+    div = document.getElementById('menssages')
     fetch('/rpgnip/index/search')
     .then(function(response){
       return response.json()
     })
     .then(function(data){
         for(var i in data){
-            console.log(data[i]['mensagem'])
+            var author = document.createElement('p')
+            var p = document.createElement('p')
+            p.innerHTML = data[i]['mensagem']
+            author.innerHTML = data[i]['userrname']
+            div.append(author)
+            div.append(p)
         }
     })
+    setTimeout('search()',5000) 
 }

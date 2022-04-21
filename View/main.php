@@ -8,16 +8,24 @@
     <title>Document</title>
 </head>
 <body onload='search()'>
-        <div class="container-fluid bg-danger">
-             <h1>Rpgist</h1>
+        <div class="navbar bg-danger">
+             <h1 class='nav-brand'>Rpgist</h1>
+             <a class='nav-link' href='/rpgnip/login'><h3>Login</h3></a>
+        </div>
+        <div class='container-fluid'>
+            <img src='ddd.jpg' style='width:100%;height:10rem;'>
         </div>
     <?php 
     session_start();
     ?>
     <div class='container' style='margin-left:1rem;'>
-    <div class='container bg-dark ' style='width:50rem'>
+    <div class='container bg-dark ' style='width:70%'>
            <div class='card bg-light' style='height:10rem'>  
            <div class='card bg-light'  id='menssages'>
+               <?php foreach($dadosModel as $v ){
+                   ?><h2 class='text-secondary'><?php echo $v['userrname'] ?> <?php
+                   ?><h2><?php echo $v['mensagem'] ?></h2><?php
+               } ?>
            </div>  
            <?php if(isset($_SESSION['id_user'])){ ?>  
                <form>

@@ -8,9 +8,6 @@ class loginController extends Controller {
     $email = htmlentities(addslashes($_POST['Email']));
     $password = htmlentities(addslashes($_POST['Password']));
     $t->login($email,$password);
-    if(isset($_SESSION['id_user'])){
-      echo 'eae';
-    }
     header('Location:/rpgnip/');
   }
 }
