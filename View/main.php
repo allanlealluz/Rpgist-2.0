@@ -14,14 +14,22 @@
         </div>
         <div class='container-fluid'>
             <img src='ddd.jpg' style='width:100%;height:10rem;'>
+            <?php 
+            if(isset($_SESSION['admin'])){
+                ?>
+                <input type="file" name="bgn" id=""> 
+                <input type='submit' name='submit'>
+                <?php
+            }
+            ?>
         </div>
     <?php 
     session_start();
     ?>
     <div class='container' style='margin-left:1rem;'>
-    <div class='container bg-dark ' style='width:70%'>
-           <div class='card bg-light' style='height:10rem'>  
-           <div class='card bg-light'  id='menssages'>
+    <div class='container bg-dark ' style='width:70%;height:20rem;'>
+           <div class='card bg-light' style='height:20rem'>  
+           <div class='card bg-light' style='overflow:auto;'  id='menssages'>
                <?php foreach($dadosModel as $v ){
                    ?><h2 class='text-secondary'><?php echo $v['userrname'] ?> <?php
                    ?><h2><?php echo $v['mensagem'] ?></h2><?php

@@ -14,8 +14,11 @@ class indexController extends Controller {
     session_start();
     $t = new Connection('rpgnip','localhost','root','');
     $data = $t->searchTempMenssages();
-    $data = json_encode($data);
-    print_r($data);
-    $t->DelTempMensages();
+    sleep(3);
+    $data2 = json_encode($data);
+    print_r($data2);
+    foreach($data as $v){
+      $t->DelTempMensages($v['id']);
+    }   
   }
 }

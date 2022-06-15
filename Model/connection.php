@@ -27,13 +27,13 @@ class Connection {
         $cmd->execute();
     }
     public function searchMensage(){
-    $cmd = $this->pdo->prepare('SELECT userrname,mensagem,data,horario from mensagens inner join usuarios on id_user = origem');
+        $cmd = $this->pdo->prepare('SELECT *,userrname FROM mensagens inner join usuarios  on id_user = origem');
         $cmd->execute();
         $data = $cmd->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
     public function searchTempMenssages(){
-        $cmd = $this->pdo->prepare('SELECT *,userrname FROM mensagem_temp inner join usuarios where id_user = origem order by id limit 1');
+        $cmd = $this->pdo->prepare('SELECT *,userrname FROM mensagem_temp inner join usuarios on id_user = origem ');
         $cmd->execute();
         $data = $cmd->fetchAll();
         return $data; 
@@ -46,14 +46,19 @@ class Connection {
         if($cmd->rowCount() > 0 ){
             $dados = $cmd->fetch();
             session_start();
-            $_SESSION['id_user'] = $dados['id_user'];
-            return true;
+            if($dados['id_user'] == 1){
+                $_SESSION['id_user'] = $dados['admin'];
+            }else{
+                $_SESSION['id_user'] = $dados['id_user'];
+            }      
+           return true;
         }else{
             return false;
         }
     }
-    public function DelTempMensages(){
-        $cmd = $this->pdo->prepare('DELETE FROM mensagem_temp order by id limit 1');
+    public function DelTempMensages($id){
+        $cmd = $this->pdo->prepare('DELETE FROM mensagem_temp where id = :id');
+        $cmd->bindValue(':id',$id);
         $cmd->execute();
     }
 }
