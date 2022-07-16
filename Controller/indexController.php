@@ -5,20 +5,20 @@ class indexController extends Controller {
       $dadosModel = $t->searchMensage();
       $this->carregarTemplate('main',$dadosModel);
   }
-  function receive($data){
+  
+  function receive($data)
+  {
      session_start();
      $t = new Connection('rpgnip','localhost','root','');
      $t->AddMensage($data,$_SESSION['id_user']);
   }
-  function search(){
+  function search($id)
+  {
     session_start();
     $t = new Connection('rpgnip','localhost','root','');
-    $data = $t->searchTempMenssages();
-    sleep(3);
+    $data = $t->searchTempMenssages($id);
     $data2 = json_encode($data);
     print_r($data2);
-    foreach($data as $v){
-      $t->DelTempMensages($v['id']);
-    }   
   }
 }
+$to = new IndexController();

@@ -1,3 +1,4 @@
+var id = 0
 addEventListener('submit',function(e){
     e.preventDefault()
     value = document.getElementById('mensage').value
@@ -7,7 +8,7 @@ addEventListener('submit',function(e){
 })
 function search(){
     div = document.getElementById('menssages')
-    fetch('/rpgnip/index/search')
+    fetch(`/rpgnip/index/search/${id}`)
     .then(function(response){
       return response.json()
     })
@@ -17,6 +18,7 @@ function search(){
             var p = document.createElement('h2')
             p.innerHTML = data[i]['mensagem']
             author.innerHTML = data[i]['userrname']
+            id = data[i]['id']
             author.setAttribute('class','text-secondary')
             div.append(author)
             div.append(p)

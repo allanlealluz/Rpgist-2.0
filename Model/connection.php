@@ -32,8 +32,9 @@ class Connection {
         $data = $cmd->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
-    public function searchTempMenssages(){
-        $cmd = $this->pdo->prepare('SELECT *,userrname FROM mensagem_temp inner join usuarios on id_user = origem ');
+    public function searchTempMenssages($id){  
+        $cmd = $this->pdo->prepare('SELECT *,userrname FROM mensagem_temp inner join usuarios on id_user = origem where id > :id LIMIT 1');
+        $cmd->bindValue(':id',$id);
         $cmd->execute();
         $data = $cmd->fetchAll();
         return $data; 

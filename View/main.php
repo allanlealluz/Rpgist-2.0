@@ -33,7 +33,8 @@
                <?php foreach($dadosModel as $v ){
                    ?><h2 class='text-secondary'><?php echo $v['userrname'] ?> <?php
                    ?><h2><?php echo $v['mensagem'] ?></h2><?php
-               } ?>
+               }
+                ?>
            </div>  
            <?php if(isset($_SESSION['id_user'])){ ?>  
                <form>
