@@ -26,5 +26,12 @@ function search() {
       div.scroll(0, 1000000000000);
     }
   });
-  setTimeout('search()', 5000);
+  setTimeout('search()', 500);
 }
+
+setTimeout(function () {
+  conteudo = document.getElementById('Conteudo');
+  carregamento = document.getElementById('bg');
+  conteudo.setAttribute('style', 'display:inline;');
+  carregamento.setAttribute('style', 'display:none;');
+}, 1000);

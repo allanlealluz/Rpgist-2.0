@@ -10,7 +10,12 @@ class indexController extends Controller {
   {
      session_start();
      $t = new Connection('rpgnip','localhost','root','');
+     if(isset($_SESSION['id_user'])){
      $t->AddMensage($data,$_SESSION['id_user']);
+     }elseif(isset($_SESSION['admin'])){
+      $t->AddMensage($data,$_SESSION['admin']);
+     }
+
   }
   function search($id)
   {

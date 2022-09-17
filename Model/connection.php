@@ -48,7 +48,7 @@ class Connection {
             $dados = $cmd->fetch();
             session_start();
             if($dados['id_user'] == 1){
-                $_SESSION['id_user'] = $dados['admin'];
+                $_SESSION['admin'] = 1;
             }else{
                 $_SESSION['id_user'] = $dados['id_user'];
             }      
